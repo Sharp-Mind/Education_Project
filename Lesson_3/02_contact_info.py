@@ -1,6 +1,6 @@
 
 def statistics(name, surname, year, place, email, phone, act='in'):
-    '''Позволяет оперировать данными в списке из словарей, составленными из информации о людях.
+    """Позволяет оперировать данными в списке из словарей, составленными из информации о людях.
 
 
     Именованные параметры:
@@ -23,7 +23,8 @@ def statistics(name, surname, year, place, email, phone, act='in'):
 
     Функция изменяет список словарей stat_dict или делает вывод из этого списка по найденным совпадениям в
     указанных данных.
-    '''
+    """
+
     inter_list = (surname, name, year, place, email, phone)  # для экономии памяти :)
     default_keys = {'фамилия': None, 'имя': None, 'год': None, 'город': None, 'e-mail': None, 'телефон': None,
                    'out': None}
@@ -31,14 +32,14 @@ def statistics(name, surname, year, place, email, phone, act='in'):
     found = False
 
     def add_info(action='new'):
-        '''Добавление или обновление словаря в списке.
+        """Добавление или обновление словаря в списке.
 
         Именованные параметры:
         action -- обозначение добавления нового словаря; в этом случае добавляются ключи с пустым значением из
                   default_keys, тип string, необязательный параметр (по умолчанию = 'new')
 
         Добавляет в список словарей пользовательские данные
-        '''
+        """
         if action == 'new':
             stat_dict.append(default_keys)
         stat_dict[-1]['фамилия'] = inter_list[0]

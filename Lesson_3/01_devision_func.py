@@ -1,7 +1,7 @@
 
 
 def devision(dividend1, dividend2, divider):
-    '''Делит параметры dividend1 и dividend2 поочерёдно на параметр divider.
+    """Делит параметры dividend1 и dividend2 поочерёдно на параметр divider.
 
     Именованные параметры:
     dividend1 -- первое делимое; тип float (обязательный аргумент)
@@ -10,7 +10,7 @@ def devision(dividend1, dividend2, divider):
 
     Возвращает:
     dividend1 / divider, dividend2 / divider
-    '''
+    """
     return (dividend1 / divider), (dividend2 / divider)
 
 
