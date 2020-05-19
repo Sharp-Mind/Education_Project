@@ -35,32 +35,10 @@ def check_n_float(text=None):
             """
             if data[0] == '-':  # for me: data[1] есть не всегда, сократить время выполнения таким способом не удастся
                 data = data[0] + data.lstrip(data[0])
-            print(data)
             return float(data)
 
 user_input_1 = check_n_float('Введите первое делимое (дробная часть отделяется точкой): ')
 user_input_2 = check_n_float('Введите второе делимое (дробная часть отделяется точкой): ')
 user_input_3 = check_n_float('Введите делитель (дробная часть отделяется точкой): ')
-
-# while True:
-#     user_input_1 = input('Введите первый делимое: ')
-#     if user_input_1.lstrip('-').replace('.', '', 1).isdigit() == False:
-#         print('Пожалуйста, повторите ввод: нужно ввести натурально число')
-#     else:
-#         break
-#
-# while True:
-#     user_input_2 = input('Введите второй делимое: ')
-#     if user_input_2.lstrip('-').replace('.', '', 1).isdigit() == False:
-#         print('Пожалуйста, повторите ввод: нужно ввести число')
-#     else:
-#         break
-#
-# while True:
-#     user_input_3 = input('Введите второй делитель: ')
-#     if user_input_3.lstrip('-').replace('.', '', 1).isdigit() == False:
-#         print('Пожалуйста, повторите ввод: нужно ввести число')
-#     else:
-#         break
 
 print(*(devision(user_input_1, user_input_2, user_input_3)))
