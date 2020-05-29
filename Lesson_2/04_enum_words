@@ -1,0 +1,1 @@
+list1 = [print(f'{ind} {elem[:10]}') for ind, elem in enumerate(input('Введите несколько слов через пробелы: ').split())]
