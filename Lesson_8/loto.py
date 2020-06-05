@@ -61,7 +61,6 @@ class Gamer:
                                 break
 
         if (self.user_answer == 'n' and self._found == True) or (self.user_answer == 'y' and self._found == False):
-            [[print(j, end='') for j in i] and print() for i in throllface]
             print('Вы проиграли!')
             return False
 
