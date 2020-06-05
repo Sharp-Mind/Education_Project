@@ -96,11 +96,12 @@ class Computer(Gamer):
         for i in range(1, len(self.player_card)):
             for j in self.player_card[i]:
                 if str(self.__current_num) in j:
-                    self.player_card[i][self.player_card[i].index(j)] = '-- '
                     if self.__current_num < 10 and len(j.rstrip()) == 1:
+                        self.player_card[i][self.player_card[i].index(j)] = '-- '
                         del self._total_in_card[
                             self._total_in_card.index(' '+ str(self.__current_num))]
                     elif self.__current_num >= 10 and len(j.rstrip().lstrip()) == 2:
+                        self.player_card[i][self.player_card[i].index(j)] = '-- '
                         del self._total_in_card[
                             self._total_in_card.index(self.__current_num)]
                     break
@@ -112,6 +113,7 @@ a.fill_card()
 b.fill_card()
 
 while len(rolled) <= number_of_kegs:
+
     print()
     [[print(j, end='') for j in i] and print() for i in a.player_card]
     print('==========================')
