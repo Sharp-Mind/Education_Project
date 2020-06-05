@@ -45,17 +45,17 @@ class Gamer:
             return False
         for i in range(1, len(self.player_card)):
             for j in self.player_card[i]:
-                if str(self.__current_num).rstrip() in j:
-                    if self.__current_num < 10 and len(j.rstrip().lstrip()) == 1 or\
-                            (self.__current_num >= 10 and len(j.rstrip().lstrip()) == 2):
+                if str(self.__current_num) in j:
+                    if self.__current_num < 10 and len(j.rstrip().lstrip()) == 1 or \
+                            (self.__current_num >= 10 and len(j.rstrip()) == 2):
                         self._found = True
                         if self.user_answer == 'y':
                             self.player_card[i][self.player_card[i].index(j)] = '-- '
                             if self.__current_num < 10:
                                 del self._total_in_card[
-                                        self._total_in_card.index(' ' + str(self.__current_num))]
+                                    self._total_in_card.index(' ' + str(self.__current_num))]
                                 break
-                            elif  self.__current_num >= 10:
+                            elif self.__current_num >= 10:
                                 del self._total_in_card[
                                     self._total_in_card.index(self.__current_num)]
                                 break
@@ -95,11 +95,11 @@ class Computer(Gamer):
         for i in range(1, len(self.player_card)):
             for j in self.player_card[i]:
                 if str(self.__current_num) in j:
-                    if self.__current_num < 10 and len(j.rstrip()) == 1:
+                    if self.__current_num < 10 and len(j.rstrip().lstrip()) == 1:
                         self.player_card[i][self.player_card[i].index(j)] = '-- '
                         del self._total_in_card[
-                            self._total_in_card.index(' '+ str(self.__current_num))]
-                    elif self.__current_num >= 10 and len(j.rstrip().lstrip()) == 2:
+                            self._total_in_card.index(' ' + str(self.__current_num))]
+                    elif self.__current_num >= 10 and len(j.rstrip()) == 2:
                         self.player_card[i][self.player_card[i].index(j)] = '-- '
                         del self._total_in_card[
                             self._total_in_card.index(self.__current_num)]
@@ -112,7 +112,6 @@ a.fill_card()
 b.fill_card()
 
 while len(rolled) <= number_of_kegs:
-
     print()
     [[print(j, end='') for j in i] and print() for i in a.player_card]
     print('==========================')
