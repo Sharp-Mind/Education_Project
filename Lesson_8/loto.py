@@ -61,6 +61,7 @@ class Gamer:
                                 break
 
         if (self.user_answer == 'n' and self._found == True) or (self.user_answer == 'y' and self._found == False):
+            [[print(j, end='') for j in i] and print() for i in throllface]
             print('Вы проиграли!')
             return False
 
@@ -111,15 +112,10 @@ a.fill_card()
 b.fill_card()
 
 while len(rolled) <= number_of_kegs:
-    system('cls')
     print()
     [[print(j, end='') for j in i] and print() for i in a.player_card]
     print('==========================')
     [[print(j, end='') for j in i] and print() for i in b.player_card]
-
-    print(a._total_in_card)
-    print(b._total_in_card)
-
 
     keg = a.num_from_bag()
     print(f'Выпал бочонок с номером {keg}')
@@ -132,6 +128,4 @@ while len(rolled) <= number_of_kegs:
     elif b.check_win() == True:
         print('Компьютер победил!')
         break
-
     b.step(keg)
-
