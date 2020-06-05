@@ -6,6 +6,7 @@ number_of_kegs = 90
 
 class Gamer:
     def __init__(self):
+
         self.nums_per_line = 5
         self.player_card = [['----------Gamer-----------'], ['   ', '   ', '   ', '   '], ['   ', '   ', '   ', '   '],
                        ['   ', '   ', '   ', '   '], ['--------------------------']]
@@ -33,8 +34,6 @@ class Gamer:
 
             self.player_card[line + 1].extend(self.__needed)
             shuffle(self.player_card[line + 1])
-            self.player_card[line + 1][len(self.player_card[line + 1]) - 1] = \
-                self.player_card[line + 1][len(self.player_card[line + 1]) - 1].rstrip(' ')
 
 
     def step(self, current_num):
@@ -48,15 +47,26 @@ class Gamer:
             for j in self.player_card[i]:
                 if str(self.__current_num).rstrip() in j:
                     if self.__current_num < 10 and len(j.rstrip().lstrip()) == 1 or\
-                            (self.__current_num > 10 and len(j.rstrip().lstrip()) == 2):
+                            (self.__current_num >= 10 and len(j.rstrip().lstrip()) == 2):
                         self._found = True
                         if self.user_answer == 'y':
                             self.player_card[i][self.player_card[i].index(j)] = '-- '
-                            break
+                            if self.__current_num < 10:
+                                del self._total_in_card[
+                                        self._total_in_card.index(' ' + str(self.__current_num))]
+                                break
+                            elif  self.__current_num >= 10:
+                                del self._total_in_card[
+                                    self._total_in_card.index(self.__current_num)]
+                                break
 
         if (self.user_answer == 'n' and self._found == True) or (self.user_answer == 'y' and self._found == False):
             print('Вы проиграли!')
             return False
+
+    def check_win(self):
+        if len(self._total_in_card) == 0:
+            return True
 
 
 class Player(Gamer):
@@ -85,10 +95,14 @@ class Computer(Gamer):
         for i in range(1, len(self.player_card)):
             for j in self.player_card[i]:
                 if str(self.__current_num) in j:
-                    if (self.__current_num < 10 and len(j.rstrip().lstrip()) == 1) or \
-                            (self.__current_num > 10 and len(j.rstrip().lstrip()) == 2) :
-                        self.player_card[i][self.player_card[i].index(j)] = '-- '
-                        break
+                    self.player_card[i][self.player_card[i].index(j)] = '-- '
+                    if self.__current_num < 10 and len(j.rstrip()) == 1:
+                        del self._total_in_card[
+                            self._total_in_card.index(' '+ str(self.__current_num))]
+                    elif self.__current_num >= 10 and len(j.rstrip().lstrip()) == 2:
+                        del self._total_in_card[
+                            self._total_in_card.index(self.__current_num)]
+                    break
 
 
 a = Player()
@@ -97,19 +111,27 @@ a.fill_card()
 b.fill_card()
 
 while len(rolled) <= number_of_kegs:
+    system('cls')
     print()
     [[print(j, end='') for j in i] and print() for i in a.player_card]
     print('==========================')
     [[print(j, end='') for j in i] and print() for i in b.player_card]
+
+    print(a._total_in_card)
+    print(b._total_in_card)
+
 
     keg = a.num_from_bag()
     print(f'Выпал бочонок с номером {keg}')
 
     if a.step(keg) == False:
         break
+    elif a.check_win() == True:
+        print('Игрок победил!')
+        break
+    elif b.check_win() == True:
+        print('Компьютер победил!')
+        break
 
     b.step(keg)
-
-
-
 
