@@ -105,7 +105,11 @@ while len(rolled) <= number_of_kegs:
     keg = a.num_from_bag()
     print(f'Выпал бочонок с номером {keg}')
 
-    if not a.step(keg):
+    if a.step(keg) == False:
         break
 
     b.step(keg)
+
+
+
+
