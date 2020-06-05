@@ -11,6 +11,10 @@ class Gamer:
         self.player_card = [['----------Gamer-----------'], ['   ', '   ', '   ', '   '], ['   ', '   ', '   ', '   '],
                        ['   ', '   ', '   ', '   '], ['--------------------------']]
 
+    def __str__(self):
+        [[print(j, end='') for j in i] and print() for i in self.player_card]
+        return ''
+
     def roll(self):
         yield round(random() * (90 - 1) + 1)
 
@@ -112,10 +116,9 @@ a.fill_card()
 b.fill_card()
 
 while len(rolled) <= number_of_kegs:
-    print()
-    [[print(j, end='') for j in i] and print() for i in a.player_card]
+    print(a, end='')
     print('==========================')
-    [[print(j, end='') for j in i] and print() for i in b.player_card]
+    print(b)
 
     keg = a.num_from_bag()
     print(f'Выпал бочонок с номером {keg}')
