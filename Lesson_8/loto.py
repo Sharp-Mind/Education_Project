@@ -125,6 +125,9 @@ while len(rolled) <= number_of_kegs:
 
     if a.step(keg) == False:
         break
+    elif a.check_win == True and b.check_win == True:
+        print('Ничья!')
+        break
     elif a.check_win() == True:
         print('Игрок победил!')
         break
